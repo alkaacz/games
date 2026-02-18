@@ -6,6 +6,12 @@
 
 ---
 
+## 0. První verze TETRIS
+
+Vytvořena v lokální složce, kde vznikl základ hry tetris. Prompt nemám.
+
+---
+
 ## 1. Počáteční seznámení s projektem
 
 **Požadavek:** Podívat se do složky tetris
