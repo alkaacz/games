@@ -265,6 +265,9 @@ function updateDisplay() {
     document.getElementById('score').textContent = score;
     document.getElementById('level').textContent = level;
     document.getElementById('lines').textContent = lines;
+    // Rychlost zobrazená jako násobek (1.0x = výchozí rychlost)
+    const speedMultiplier = (1000 / dropInterval).toFixed(1);
+    document.getElementById('speed').textContent = speedMultiplier + 'x';
 }
 
 // Kontrola konce hry
@@ -409,6 +412,38 @@ document.addEventListener('keydown', (e) => {
 document.getElementById('startBtn').addEventListener('click', startGame);
 document.getElementById('pauseBtn').addEventListener('click', pauseGame);
 document.getElementById('restartBtn').addEventListener('click', restartGame);
+
+// Mobilní tlačítka ovládání
+document.getElementById('leftBtn').addEventListener('click', () => {
+    if (gameRunning && !gamePaused && currentPiece) {
+        currentPiece.move(-1, 0);
+        draw();
+    }
+});
+
+document.getElementById('rightBtn').addEventListener('click', () => {
+    if (gameRunning && !gamePaused && currentPiece) {
+        currentPiece.move(1, 0);
+        draw();
+    }
+});
+
+document.getElementById('downBtn').addEventListener('click', () => {
+    if (gameRunning && !gamePaused && currentPiece) {
+        if (currentPiece.move(0, 1)) {
+            score += 1;
+            updateDisplay();
+        }
+        draw();
+    }
+});
+
+document.getElementById('rotateBtn').addEventListener('click', () => {
+    if (gameRunning && !gamePaused && currentPiece) {
+        currentPiece.rotate();
+        draw();
+    }
+});
 
 // Inicializace
 updateDisplay();

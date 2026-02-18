@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <div class="game-container">
-            <h1>TETRIS</h1>
+            <h1>TETRIS</h2>
             <div class="game-info">
                 <div class="info-item">
                     <span class="label">Skóre:</span>
@@ -23,6 +23,10 @@
                     <span class="label">Řádky:</span>
                     <span id="lines" class="value">0</span>
                 </div>
+                <div class="info-item">
+                    <span class="label">Rychlost:</span>
+                    <span id="speed" class="value">1.0x</span>
+                </div>
             </div>
             <canvas id="tetris" width="240" height="400"></canvas>
             <div class="next-piece">
@@ -34,6 +38,18 @@
                 <button id="pauseBtn">Pauza</button>
                 <button id="restartBtn">Restart</button>
             </div>
+            
+            <div class="mobile-controls">
+                <div class="control-row">
+                    <button id="rotateBtn" class="mobile-btn rotate-btn">↑ Rotace</button>
+                </div>
+                <div class="control-row">
+                    <button id="leftBtn" class="mobile-btn">← Vlevo</button>
+                    <button id="downBtn" class="mobile-btn">↓ Dolů</button>
+                    <button id="rightBtn" class="mobile-btn">→ Vpravo</button>
+                </div>
+            </div>
+            
             <div class="instructions">
                 <h3>Ovládání:</h3>
                 <p>← → - Pohyb</p>
