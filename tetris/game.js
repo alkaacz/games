@@ -42,6 +42,7 @@ let gameRunning = false;
 let gamePaused = false;
 let dropInterval = 1000;
 let lastDropTime = 0;
+let accelerationEnabled = true;
 
 // Vytvoření prázdné herní plochy
 function createBoard() {
@@ -262,7 +263,7 @@ function clearLines() {
 
 // Aktualizace intervalu pádu podle skóre
 function updateDropInterval() {
-    if (score >= 50) {
+    if (accelerationEnabled && score >= 50) {
         // Po 50 bodech se zrychlí o 100ms za každých 10 bodů
         const speedIncrement = Math.floor((score - 50) / 10);
         dropInterval = Math.max(100, 1000 - speedIncrement * 100);
@@ -379,6 +380,8 @@ function restartGame() {
     dropInterval = 1000;
     gameRunning = false;
     gamePaused = false;
+    accelerationEnabled = true;
+    document.getElementById('speedBtn').classList.remove('disabled');
     updateDisplay();
     draw();
     startGame();
@@ -425,6 +428,19 @@ document.addEventListener('keydown', (e) => {
 document.getElementById('startBtn').addEventListener('click', startGame);
 document.getElementById('pauseBtn').addEventListener('click', pauseGame);
 document.getElementById('restartBtn').addEventListener('click', restartGame);
+
+// Tlačítko pro přepínání zrychlování
+document.getElementById('speedBtn').addEventListener('click', () => {
+    accelerationEnabled = !accelerationEnabled;
+    updateDropInterval();
+    updateDisplay();
+    const btn = document.getElementById('speedBtn');
+    if (accelerationEnabled) {
+        btn.classList.remove('disabled');
+    } else {
+        btn.classList.add('disabled');
+    }
+});
 
 // Mobilní tlačítka ovládání
 document.getElementById('leftBtn').addEventListener('click', () => {
