@@ -263,8 +263,8 @@ function clearLines() {
 // Aktualizace intervalu pádu podle skóre
 function updateDropInterval() {
     if (score >= 50) {
-        // Po 50 bodech se zrychlí o 0,1 (100ms) za každých 10 bodů
-        const speedIncrement = Math.floor((score - 50) / 10) + 1;
+        // Po 50 bodech se zrychlí o 100ms za každých 10 bodů
+        const speedIncrement = Math.floor((score - 50) / 10);
         dropInterval = Math.max(100, 1000 - speedIncrement * 100);
     } else {
         dropInterval = 1000;
