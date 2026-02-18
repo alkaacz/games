@@ -29,25 +29,32 @@
                 </div>
             </div>
             <canvas id="tetris" width="240" height="400"></canvas>
-            <div class="next-piece">
-                <h3>Další:</h3>
-                <canvas id="next" width="80" height="80"></canvas>
-            </div>
-            <div class="controls">
-                <button id="startBtn">Start</button>
-                <button id="pauseBtn">Pauza</button>
-                <button id="restartBtn">Restart</button>
+            <div class="game-bottom">
+                <div class="next-piece">
+                    <h3>Další:</h3>
+                    <canvas id="next" width="80" height="80"></canvas>
+                </div>
+                <div class="controls">
+                    <button id="startBtn">Start</button>
+                    <button id="pauseBtn">Pauza</button>
+                    <button id="restartBtn">Restart</button>
+                </div>
             </div>
             
             <div class="mobile-controls">
-                <div class="control-row">
+                <div class="control-row mobile-rotate">
                     <button id="rotateBtn" class="mobile-btn rotate-btn">↑ Rotace</button>
                 </div>
-                <div class="control-row">
+                <div class="control-row mobile-left">
                     <button id="leftBtn" class="mobile-btn">← Vlevo</button>
+                </div>
+                <div class="control-row mobile-center">
                     <button id="downBtn" class="mobile-btn">↓ Dolů</button>
+                </div>
+                <div class="control-row mobile-right">
                     <button id="rightBtn" class="mobile-btn">→ Vpravo</button>
                 </div>
+                
             </div>
             
             <div class="instructions">
