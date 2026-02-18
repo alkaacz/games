@@ -255,8 +255,19 @@ function clearLines() {
         lines += linesCleared;
         score += [0, 100, 300, 500, 800][linesCleared] * level;
         level = Math.floor(lines / 10) + 1;
-        dropInterval = Math.max(100, 1000 - (level - 1) * 100);
+        updateDropInterval();
         updateDisplay();
+    }
+}
+
+// Aktualizace intervalu pádu podle skóre
+function updateDropInterval() {
+    if (score >= 50) {
+        // Po 50 bodech se zrychlí o 0,1 (100ms) za každých 10 bodů
+        const speedIncrement = Math.floor((score - 50) / 10) + 1;
+        dropInterval = Math.max(100, 1000 - speedIncrement * 100);
+    } else {
+        dropInterval = 1000;
     }
 }
 
@@ -390,10 +401,12 @@ document.addEventListener('keydown', (e) => {
             currentPiece.move(1, 0);
             break;
         case 'ArrowDown':
-            if (currentPiece.move(0, 1)) {
+            // Hard drop - cihla padá úplně dolů
+            while (currentPiece.move(0, 1)) {
                 score += 1;
-                updateDisplay();
             }
+            updateDropInterval();
+            updateDisplay();
             break;
         case 'ArrowUp':
         case ' ':
@@ -430,10 +443,12 @@ document.getElementById('rightBtn').addEventListener('click', () => {
 
 document.getElementById('downBtn').addEventListener('click', () => {
     if (gameRunning && !gamePaused && currentPiece) {
-        if (currentPiece.move(0, 1)) {
+        // Hard drop - cihla padá úplně dolů
+        while (currentPiece.move(0, 1)) {
             score += 1;
-            updateDisplay();
         }
+        updateDropInterval();
+        updateDisplay();
         draw();
     }
 });
